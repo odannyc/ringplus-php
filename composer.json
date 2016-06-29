@@ -1,0 +1,21 @@
+{
+    "name": "odannyc/ringplus-php",
+    "description": "This is a simple Ringplus PHP client. Not an official package.",
+    "authors": [
+        {
+            "name": "Danny Carrillo",
+            "email": "odannycx@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ringplus\\": "src/Ringplus"
+        }
+    }
+}
