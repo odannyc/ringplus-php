@@ -11,17 +11,33 @@ use Ringplus\Api\Accounts;
 class AccountsTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Tests configuration setup of client id.
+     * Setup the configuration.
+     */
+    public function setUp()
+    {
+        Configuration::begin();
+        Configuration::accessToken();
+    }
+
+    /**
+     * Tests returning all accounts the user has access to.
      *
      * @return assertion
      */
     public function testAccountsGetAll()
     {
-        Configuration::begin();
-        Configuration::accessToken();
-
         $accounts = Accounts::all();
+        print_r($accounts);
+    }
 
+    /**
+     * Tests getting all accounts by user id.
+     *
+     * @return assertion
+     */
+    public function testAccountsByUserId()
+    {
+        $accounts = Accounts::user();
         print_r($accounts);
     }
 }

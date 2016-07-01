@@ -35,4 +35,19 @@ class AccountsGateway
 
         return $response;
     }
+
+    /**
+     * Returns all accounts belonging to one user.
+     *
+     * @param int $userId
+     *
+     * @return dataset
+     */
+    public function user($userId)
+    {
+        $path = "/users/{$userId}/accounts";
+        $response = $this->requestor->get($path);
+
+        return $response;
+    }
 }

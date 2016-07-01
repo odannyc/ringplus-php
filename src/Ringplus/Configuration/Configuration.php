@@ -44,7 +44,7 @@ class Configuration
         return (new Authenticate(self::$instance))->login();
     }
 
-    public static function clientId($value)
+    public static function clientId($value = null)
     {
         if (empty($value)) {
             return self::$instance->getClientId();
@@ -52,7 +52,7 @@ class Configuration
         self::$instance->setClientId($value);
     }
 
-    public static function redirectUri($value)
+    public static function redirectUri($value = null)
     {
         if (empty($value)) {
             return self::$instance->getRedirectUri();
@@ -60,7 +60,7 @@ class Configuration
         self::$instance->setRedirectUri($value);
     }
 
-    public static function clientSecret($value)
+    public static function clientSecret($value = null)
     {
         if (empty($value)) {
             return self::$instance->getClientSecret();
@@ -68,7 +68,7 @@ class Configuration
         self::$instance->setClientSecret($value);
     }
 
-    public static function accessToken($value)
+    public static function accessToken($value = null)
     {
         if (empty($value)) {
             return self::$instance->getAccessToken();
