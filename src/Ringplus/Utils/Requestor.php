@@ -2,6 +2,7 @@
 namespace Ringplus\Utils;
 
 use GuzzleHttp\Client;
+
 /**
  * The http request doorman.
  */
@@ -18,17 +19,18 @@ class Requestor
     public function __construct($config)
     {
         $this->config = $config;
-        $this->client = new Client();
+        $this->client = new Client(['base_uri' => $this->config->baseUrl()]);
     }
 
     public function get($path, $variables = array())
     {
         $variables['access_token'] = $this->config->getAccessToken();
-        return $this->process('GET', $this->config->baseUrl() . $path, $variables);
+        return $this->client->get($path, ['query' => $variables]);
     }
 
-    private function process($verb, $path, $variables)
+    public function put($path, $variables = array())
     {
-        return json_decode($this->client->request($verb, $path, ['query' => $variables])->getBody()->getContents());
+        $variables['access_token'] = $this->config->getAccessToken();
+        return $this->client->put($path, ['json' => $variables]);
     }
 }

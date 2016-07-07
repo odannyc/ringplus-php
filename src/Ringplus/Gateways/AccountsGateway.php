@@ -2,6 +2,7 @@
 namespace Ringplus\Gateways;
 
 use Ringplus\Utils\Requestor;
+use Ringplus\Utils\Responder;
 
 /**
  * Acts as the Accounts gateway.
@@ -33,7 +34,7 @@ class AccountsGateway
         $path = '/accounts';
         $response = $this->requestor->get($path);
 
-        return $response;
+        return (new Responder($response))->buildResponse();
     }
 
     /**
@@ -48,6 +49,38 @@ class AccountsGateway
         $path = "/users/{$userId}/accounts";
         $response = $this->requestor->get($path);
 
-        return $response;
+        return (new Responder($response))->buildResponse();
+    }
+
+    /**
+     * Gets a specific account by Id.
+     *
+     * @param int $accountId
+     *
+     * @return dataset
+     */
+    public function fetch($accountId)
+    {
+        $path = "/accounts/{$accountId}";
+        $response = $this->requestor->get($path);
+
+        return (new Responder($response))->buildResponse();
+    }
+
+    /**
+     * Updates a specific record.
+     * Only name is accepted right now.
+     *
+     * @param int The account Id to update
+     * @param array $options
+     *
+     * @return boolean Whether the update was successful or not
+     */
+    public function update($accountId, $options)
+    {
+        $path = "/accounts/{$accountId}";
+        $response = $this->requestor->put($path, $options);
+
+        return (new Responder($response))->buildResponse();
     }
 }

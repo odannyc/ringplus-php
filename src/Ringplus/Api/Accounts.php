@@ -29,4 +29,29 @@ class Accounts extends Base
     {
         return Configuration::gateway()->accounts()->user($userId);
     }
+
+    /**
+     * Gets a specific account by Id.
+     *
+     * @param int $accountId
+     *
+     * @return dataset
+     */
+    public static function fetch($accountId)
+    {
+        return Configuration::gateway()->accounts()->fetch($accountId);
+    }
+
+    /**
+     * Gets a specific account by Id.
+     *
+     * @param int The account Id to update
+     * @param array $options Only accepts name right now
+     *
+     * @return boolean Whether the update was successful or not
+     */
+    public static function update($accountId, $options)
+    {
+        return Configuration::gateway()->accounts()->update($accountId, $options);
+    }
 }

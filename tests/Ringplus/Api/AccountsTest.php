@@ -1,24 +1,13 @@
 <?php
 namespace tests\Ringplus\Api;
 
-use PHPUnit_Framework_TestCase;
-use Ringplus\Configuration\Configuration;
 use Ringplus\Api\Accounts;
 
 /**
- * Used to test Pings to different IP addresses.
+ * Used to test Account endpoints.
  */
-class AccountsTest extends PHPUnit_Framework_TestCase
+class AccountsTest extends Base
 {
-    /**
-     * Setup the configuration.
-     */
-    public function setUp()
-    {
-        Configuration::begin();
-        Configuration::accessToken();
-    }
-
     /**
      * Tests returning all accounts the user has access to.
      *
@@ -27,7 +16,9 @@ class AccountsTest extends PHPUnit_Framework_TestCase
     public function testAccountsGetAll()
     {
         $accounts = Accounts::all();
-        print_r($accounts);
+        
+        $this->assertEquals($accounts['status'], 200);
+        $this->assertArrayHasKey('accounts', $accounts['data']);
     }
 
     /**
@@ -37,7 +28,36 @@ class AccountsTest extends PHPUnit_Framework_TestCase
      */
     public function testAccountsByUserId()
     {
-        $accounts = Accounts::user();
-        print_r($accounts);
+        $accounts = Accounts::user($this->getTestUserId());
+        
+        $this->assertEquals($accounts['status'], 200);
+        $this->assertArrayHasKey('accounts', $accounts['data']);
+    }
+
+    /**
+     * Test to get an account by Id.
+     *
+     * @return assertion
+     */
+    public function testAccountById()
+    {
+        $accounts = Accounts::fetch($this->getTestAccountId());
+        
+        $this->assertEquals($accounts['status'], 200);
+        $this->assertArrayHasKey('account', $accounts['data']);
+    }
+
+    /**
+     * Test to update an accounts name and set it back.
+     *
+     * @return type
+     */
+    public function testUpdateAccountNameAndSetBack()
+    {
+        $account = Accounts::update($this->getTestAccountId(), [
+            'name' => 'Some random test'
+        ]);
+        
+        $this->assertEquals($account['status'], 204);
     }
 }
