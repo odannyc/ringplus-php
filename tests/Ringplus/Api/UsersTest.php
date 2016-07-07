@@ -16,7 +16,7 @@ class UsersTest extends Base
     public function testUsersGetAll()
     {
         $users = Users::all();
-        
+
         $this->assertEquals($users['status'], 200);
         $this->assertArrayHasKey('users', $users['data']);
     }
@@ -29,7 +29,7 @@ class UsersTest extends Base
     public function testUserById()
     {
         $user = Users::fetch($this->getTestUserId());
-        
+
         $this->assertEquals($user['status'], 200);
         $this->assertArrayHasKey('user', $user['data']);
     }

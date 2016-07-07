@@ -16,7 +16,7 @@ class AccountsTest extends Base
     public function testAccountsGetAll()
     {
         $accounts = Accounts::all();
-        
+
         $this->assertEquals($accounts['status'], 200);
         $this->assertArrayHasKey('accounts', $accounts['data']);
     }
@@ -29,7 +29,7 @@ class AccountsTest extends Base
     public function testAccountsByUserId()
     {
         $accounts = Accounts::user($this->getTestUserId());
-        
+
         $this->assertEquals($accounts['status'], 200);
         $this->assertArrayHasKey('accounts', $accounts['data']);
     }
@@ -42,7 +42,7 @@ class AccountsTest extends Base
     public function testAccountById()
     {
         $accounts = Accounts::fetch($this->getTestAccountId());
-        
+
         $this->assertEquals($accounts['status'], 200);
         $this->assertArrayHasKey('account', $accounts['data']);
     }

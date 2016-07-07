@@ -22,4 +22,9 @@ class Gateway
     {
         return new AccountsGateway($this->config);
     }
+
+    public function users()
+    {
+        return new UsersGateway($this->config);
+    }
 }
