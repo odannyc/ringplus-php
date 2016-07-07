@@ -54,10 +54,19 @@ class AccountsTest extends Base
      */
     public function testUpdateAccountNameAndSetBack()
     {
+        $account = Accounts::fetch($this->getTestAccountId());
+        $accountName = $account['data']['account']['name'];
+
         $account = Accounts::update($this->getTestAccountId(), [
             'name' => 'Some random test'
         ]);
         
+        $this->assertEquals($account['status'], 204);
+
+        $account = Accounts::update($this->getTestAccountId(), [
+            'name' => $accountName
+        ]);
+
         $this->assertEquals($account['status'], 204);
     }
 }
