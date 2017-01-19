@@ -27,4 +27,9 @@ class Gateway
     {
         return new UsersGateway($this->config);
     }
+
+    public function fluidcall()
+    {
+        return new FluidCallGateway($this->config);
+    }
 }
