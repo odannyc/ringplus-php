@@ -42,4 +42,9 @@ class Gateway
     {
         return new PhoneTextsGateway($this->config);
     }
+
+    public function phoneData()
+    {
+        return new PhoneDataGateway($this->config);
+    }
 }
