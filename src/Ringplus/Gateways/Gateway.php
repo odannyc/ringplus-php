@@ -32,4 +32,9 @@ class Gateway
     {
         return new FluidCallGateway($this->config);
     }
+
+    public function phoneCalls()
+    {
+        return new PhoneCallsGateway($this->config);
+    }
 }
