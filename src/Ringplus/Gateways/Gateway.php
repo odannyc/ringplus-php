@@ -47,4 +47,9 @@ class Gateway
     {
         return new PhoneDataGateway($this->config);
     }
+
+    public function voicemail()
+    {
+        return new VoicemailGateway($this->config);
+    }
 }
