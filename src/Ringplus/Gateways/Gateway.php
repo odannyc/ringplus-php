@@ -37,4 +37,9 @@ class Gateway
     {
         return new PhoneCallsGateway($this->config);
     }
+
+    public function phoneTexts()
+    {
+        return new PhoneTextsGateway($this->config);
+    }
 }
