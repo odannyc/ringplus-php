@@ -33,4 +33,10 @@ class Requestor
         $variables['access_token'] = $this->config->getAccessToken();
         return $this->client->put($path, ['json' => $variables]);
     }
+
+    public function delete($path, $variables = array())
+    {
+        $variables['access_token'] = $this->config->getAccessToken();
+        return $this->client->delete($path, ['json' => $variables]);
+    }
 }
