@@ -6,6 +6,8 @@ This is a simple Ringplus PHP client. Not an official package.
 Accounts::all();
 ```
 
+**NOTE** Ringplus looks to be no longer around so this package is probably now useless.
+
 ## Installation
 To install use composer.
 
